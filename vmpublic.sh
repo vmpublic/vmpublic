@@ -102,7 +102,20 @@ chmod a+rx /usr/local/bin/yt-dlp
 # Pull and configure public dotfiles for user0
 # -----------------------------
 
-# pending
+# -----------------------------
+# Pull public dotfiles
+# -----------------------------
+
+# Sway config
+mkdir -p /etc/sway
+wget -O /etc/sway/config https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/config
+
+# Foot config
+mkdir -p /etc/xdg
+wget -O /etc/xdg/foot.ini https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/foot.ini
+
+# Vim .vimrc for user0
+wget -O /home/user0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
 
 # -----------------------------
 # Grant user0 full ownership of their home directory
