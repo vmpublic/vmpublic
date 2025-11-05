@@ -26,6 +26,11 @@ apt-get update
 apt-get upgrade -y
 
 # -----------------------------
+# Set debconf to stop tshark from interrupting with prompt
+# -----------------------------
+echo wireshark-common wireshark-common/install-setuid boolean false | debconf-set-selections
+
+# -----------------------------
 # Primary packages
 # -----------------------------
 apt-get install -y \
@@ -69,11 +74,6 @@ apt-get install -y \
     wireplumber \
     xdg-desktop-portal \
     xdg-desktop-portal-wlr
-
-# -----------------------------
-# Enable services
-# -----------------------------
-systemctl enable --now pipewire pipewire-pulse wireplumber
 
 # -----------------------------
 # Configure earlyoom
