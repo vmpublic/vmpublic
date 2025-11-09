@@ -99,10 +99,6 @@ wget -O /usr/local/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/d
 chmod a+rx /usr/local/bin/yt-dlp
 
 # -----------------------------
-# Pull and configure public dotfiles for user0
-# -----------------------------
-
-# -----------------------------
 # Pull public dotfiles
 # -----------------------------
 
@@ -116,6 +112,16 @@ wget -O /etc/xdg/foot.ini https://raw.githubusercontent.com/vmpublic/vmpublic/re
 
 # Vim .vimrc for user0
 wget -O /home/user0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
+
+# -----------------------------
+# Configure tmux
+# -----------------------------
+tee /etc/tmux.conf << 'EOF'
+set-option -g status-style bg=black,fg=white
+set-option -g status-position top
+set-option -g pane-border-style fg=white
+set-option -g pane-active-border-style fg=white
+EOF
 
 # -----------------------------
 # Grant user0 full ownership of their home directory
