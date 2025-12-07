@@ -111,20 +111,20 @@ wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic
 # -----------------------------
 # Configure busybox ash as default shell
 # -----------------------------
- 23 # First create script to call busybox ash
- 22 tee /usr/bin/busybox-ash.sh << 'EOF'
- 21 #!/bin/sh
- 20 . /etc/profile
- 19 exec /usr/bin/busybox ash "$@"
- 18 EOF
- 17 chmod +x /usr/bin/busybox-ash.sh
- 16 # Set busybox ash script as shell for login
- 15 usermod -s /usr/bin/busybox-ash.sh root
- 14 usermod -s /usr/bin/busybox-ash.sh user0
- 13 # Set busybox ash script as shell for tmux
- 12 tee /etc/tmux.conf << 'EOF'
- 11 set-option -g default-shell /usr/bin/busybox-ash.sh
- 10 EOF
+# First create script to call busybox ash
+tee /usr/bin/busybox-ash.sh << 'EOF'
+#!/bin/sh
+. /etc/profile
+exec /usr/bin/busybox ash "$@"
+EOF
+chmod +x /usr/bin/busybox-ash.sh
+# Set busybox ash script as shell for login
+usermod -s /usr/bin/busybox-ash.sh root
+usermod -s /usr/bin/busybox-ash.sh vmuser0
+# Set busybox ash script as shell for tmux
+tee /etc/tmux.conf << 'EOF'
+set-option -g default-shell /usr/bin/busybox-ash.sh
+EOF
 # -----------------------------
 # Configure tmux
 # -----------------------------
