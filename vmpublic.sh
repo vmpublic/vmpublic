@@ -1,6 +1,5 @@
-#!/bin/bash
-set -euo pipefail
-IFS=$'\n\t'
+#!/bin/sh
+set -eux
 
 # -----------------------------
 # Minimal Debian VM Setup Script
@@ -28,7 +27,7 @@ apt-get upgrade -y
 # -----------------------------
 # Set debconf to stop tshark from interrupting with prompt
 # -----------------------------
-echo wireshark-common wireshark-common/install-setuid boolean false | debconf-set-selections
+printf 'wireshark-common wireshark-common/install-setuid boolean false\n' | debconf-set-selections
 
 # -----------------------------
 # Primary packages
@@ -82,15 +81,14 @@ systemctl enable earlyoom.service
 systemctl start earlyoom.service
 
 # -----------------------------
-# Set PATH for root and user0
+# Set PATH for root and vmuser0
 # -----------------------------
-echo 'export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"' >> /root/.bashrc
-echo 'export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"' >> /home/user0/.bashrc
+printf 'export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"\n' >> /etc/profile
 
 # -----------------------------
-# Set groups for user0
+# Set groups for vmuser0
 # -----------------------------
-usermod -aG sudo,tty,adm,video user0
+usermod -aG sudo,tty,adm,video vmuser0
 
 # -----------------------------
 # Install yt-dlp
@@ -110,9 +108,25 @@ wget -O /etc/sway/config https://raw.githubusercontent.com/vmpublic/vmpublic/ref
 mkdir -p /etc/xdg
 wget -O /etc/xdg/foot.ini https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/foot.ini
 
-# Vim .vimrc for user0
-wget -O /home/user0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
-
+# Vim .vimrc for vmuser0
+wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
+# -----------------------------
+# Configure busybox ash as default shell
+# -----------------------------
+ 23 # First create script to call busybox ash
+ 22 tee /usr/bin/busybox-ash.sh << 'EOF'
+ 21 #!/bin/sh
+ 20 . /etc/profile
+ 19 exec /usr/bin/busybox ash "$@"
+ 18 EOF
+ 17 chmod +x /usr/bin/busybox-ash.sh
+ 16 # Set busybox ash script as shell for login
+ 15 usermod -s /usr/bin/busybox-ash.sh root
+ 14 usermod -s /usr/bin/busybox-ash.sh user0
+ 13 # Set busybox ash script as shell for tmux
+ 12 tee /etc/tmux.conf << 'EOF'
+ 11 set-option -g default-shell /usr/bin/busybox-ash.sh
+ 10 EOF
 # -----------------------------
 # Configure tmux
 # -----------------------------
@@ -124,17 +138,9 @@ set-option -g pane-active-border-style fg=white
 EOF
 
 # -----------------------------
-# Grant user0 full ownership of their home directory
+# Grant vmuser0 full ownership of their home directory
 # -----------------------------
-chown -R user0:user0 /home/user0
-
-# -----------------------------
-# Install Zoom (latest .deb)
-# -----------------------------
-ZOOM_DEB="/tmp/zoom_latest_amd64.deb"
-wget -O "$ZOOM_DEB" https://zoom.us/client/latest/zoom_amd64.deb
-apt-get install -y "$ZOOM_DEB"
-rm -f "$ZOOM_DEB"
+chown -R vmuser0:vmuser0 /home/vmuser0
 
 # -----------------------------
 # Cleanup
