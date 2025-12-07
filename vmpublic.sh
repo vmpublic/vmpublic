@@ -84,6 +84,11 @@ systemctl start earlyoom.service
 printf 'export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"\n' >> /etc/profile
 
 # -----------------------------
+# Set wayland variables for enabling cursor in sway
+# -----------------------------
+printf 'export WLR_NO_HARDWARE_CURSORS=1\n' >> /etc/profile
+printf 'export WLR_RENDERER=pixman\n' >> /etc/profile
+# -----------------------------
 # Set groups for vmuser0
 # -----------------------------
 usermod -aG sudo,tty,adm,video vmuser0
