@@ -4,8 +4,6 @@ set -eux
 # -----------------------------
 # Minimal Debian VM Setup Script
 # -----------------------------
-# Sway + Wayland + Zoom + public dotfiles
-# -----------------------------
 
 # # # # # # Disable power state changes
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
