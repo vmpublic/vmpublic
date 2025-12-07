@@ -6,7 +6,6 @@ set -eux
 # -----------------------------
 
 # # # # # # Networking auto-setup for future runs
-wget -O /etc/resolv.conf https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/resolv.conf
 wget -O /home/vmuser0/networking-auto-setup.sh https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/networking-auto-setup.sh
 chmod +x /home/vmuser0/networking-auto-setup.sh
 
