@@ -57,7 +57,10 @@ apt-get install -y \
     nmap \
     build-essential \
     jq \
-    earlyoom
+    earlyoom \
+    pipewire \
+    pipewire-pulse \
+    wireplumber
 
 # -----------------------------
 # Wayland / Sway / screen sharing
