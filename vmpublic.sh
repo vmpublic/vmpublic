@@ -57,10 +57,7 @@ apt-get install -y \
     nmap \
     build-essential \
     jq \
-    earlyoom \
-    pipewire \
-    pipewire-pulse \
-    wireplumber
+    earlyoom
 
 # -----------------------------
 # Wayland / Sway / screen sharing
@@ -73,11 +70,17 @@ apt-get install -y \
     libwayland-dev \
     libxkbcommon-dev \
     wl-clipboard \
-    pipewire \
-    pipewire-pulse \
-    wireplumber \
     xdg-desktop-portal \
     xdg-desktop-portal-wlr
+
+ 
+# -----------------------------
+# Audio
+# -----------------------------   
+apt-get install -y \
+    pipewire \
+    pipewire-pulse \
+    wireplumber
 
 # -----------------------------
 # Configure earlyoom
