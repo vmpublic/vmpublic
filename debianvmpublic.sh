@@ -119,7 +119,7 @@ wget -O /etc/sway/config https://raw.githubusercontent.com/vmpublic/vmpublic/ref
 
 # Foot config
 mkdir -p /etc/xdg
-wget -O /etc/xdg/foot.ini https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/foot.ini
+wget -O /etc/xdg/foot/foot.ini https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/foot.ini
 
 # Vim .vimrc for vmuser0
 wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
