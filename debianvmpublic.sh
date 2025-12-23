@@ -49,7 +49,7 @@ apt-get install -y \
     mpv \
     neofetch \
     firefox-esr \
-    fonts-unifont \
+    fonts-terminus-otb \
     dnsutils \
     net-tools \
     tshark \
