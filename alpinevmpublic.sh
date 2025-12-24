@@ -21,25 +21,25 @@ apk upgrade
 # -----------------------------
 apk add \
     doas \
+    wget \
+    curl \
     git \
     vim \
     tmux \
-    wget \
-    curl \
     zip \
     unzip \
     gzip \
     fzf \
     ffmpeg \
     mpv \
-    neofetch \
+    fastfetch \
     firefox \
     bind-tools \
     net-tools \
     tshark \
-    ncat \
     nmap \
-    font-terminus-otb \
+    nmap-ncat \
+    font-terminus \
     build-base \
     jq \
     earlyoom \
