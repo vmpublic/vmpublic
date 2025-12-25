@@ -55,18 +55,22 @@ apk add \
     wayland-dev \
     libxkbcommon-dev \
     wl-clipboard \
+    swaylock \
     mesa-dri-gallium \
     xdg-desktop-portal \
-    xdg-desktop-portal-wlr
-
+    xdg-desktop-portal-wlr \
+    seatd \
+    pam-rundir \
+    util-linux-login
 
 # -----------------------------
-# Audio
+# Pipewire
 # -----------------------------
 apk add \
   pipewire \
   pipewire-pulse \
-  wireplumber
+  wireplumber \
+  dbus
 
 # -----------------------------
 # Configure earlyoom (OpenRC style)
