@@ -42,8 +42,7 @@ apk add \
     font-terminus \
     build-base \
     jq \
-    earlyoom \
-    # possibly also may need to install mesa-dri-gallium but we'll see - apparently essential for Wayland on many VMs
+    earlyoom
 
 # -----------------------------
 # Wayland / Sway / screen sharing
@@ -56,6 +55,7 @@ apk add \
     wayland-dev \
     libxkbcommon-dev \
     wl-clipboard \
+    mesa-dri-gallium \
     xdg-desktop-portal \
     xdg-desktop-portal-wlr
 
