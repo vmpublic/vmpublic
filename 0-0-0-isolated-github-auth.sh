@@ -2,9 +2,6 @@
 # -----------------------------
 # Prompt for GitHub username and Personal Access Token (PAT)
 # -----------------------------
-printf 'Enter GitHub username: '
-read -r GITHUB_USERNAME
-export GITHUB_USERNAME
 printf 'Enter GitHub Personal Access Token (PAT): '
 read -r GITHUB_TOKEN
 export GITHUB_TOKEN
@@ -36,4 +33,3 @@ chmod 600 /root/.ssh/known_hosts
 # # # # # Connect to Github (including || true otherwise exits even on success)
 ssh -T git@github.com || true
 unset GITHUB_TOKEN
-unset GITHUB_USERNAME
