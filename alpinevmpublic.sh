@@ -78,11 +78,6 @@ apk add \
 rc-update add earlyoom default
 rc-service earlyoom start
 # -----------------------------
-# Configure networking (OpenRC)
-# -----------------------------
-rc-update add networking default
-rc-service networking start
-# -----------------------------
 # -----------------------------
 # Configure eudev
 # -----------------------------
