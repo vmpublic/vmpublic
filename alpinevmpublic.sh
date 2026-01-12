@@ -4,7 +4,8 @@ set -eux
 # -----------------------------
 # Alpine VM Setup Script
 # -----------------------------
-
+# Create /home/vmuser0 because of weirdness
+mkdir -p /home/vmuser0
 # Networking auto-setup (Ensure script uses 'ip' from busybox or iproute2)
 wget -O /home/vmuser0/networking-auto-setup.sh https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/networking-auto-setup.sh
 chmod +x /home/vmuser0/networking-auto-setup.sh
