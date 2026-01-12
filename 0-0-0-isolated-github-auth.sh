@@ -6,6 +6,10 @@ printf 'Enter GitHub Personal Access Token (PAT): '
 read -r GITHUB_TOKEN
 export GITHUB_TOKEN
 # -----------------------------
+# apk add dependencies
+# -----------------------------
+apk add git curl jq openssh
+# -----------------------------
 # Github authentication
 # -----------------------------
 mkdir -p /root/.ssh
