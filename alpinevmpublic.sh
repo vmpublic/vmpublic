@@ -21,9 +21,11 @@ apk upgrade
 # -----------------------------
 apk add \
     doas \
+    git \
     wget \
     curl \
-    git \
+    jq \
+    openssh \
     vim \
     tmux \
     zip \
@@ -41,7 +43,6 @@ apk add \
     nmap-ncat \
     font-terminus \
     build-base \
-    jq \
     earlyoom
 
 # -----------------------------
