@@ -13,7 +13,6 @@ chmod +x /home/vmuser0/networking-auto-setup.sh
 # -----------------------------
 # Update repositories and system
 # -----------------------------
-# Manual config of repositories shouldn't be needed as Alpine seemingly includes main and community repo by default
 apk update
 apk upgrade
 
