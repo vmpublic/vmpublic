@@ -1,0 +1,8 @@
+/* Disable shortcuts */
+@-moz-document url("about:home"), url("about:newtab") {
+.top-site-outer,
+.top-sites-list,
+.top-sites-section {
+display: none !important;
+}
+}
