@@ -1,0 +1,162 @@
+/****************************************************************************		
+* GLOBAL SETTINGS	
+****************************************************************************/		
+	* {	
+	margin: 0 !important;	
+	border: none !important;	
+	box-shadow: none !important;	
+	outline: none !important;	
+	font-size: 10px !important;	
+	}	
+/* for now I will not modify any padding, too messy and unpredictable */		
+/* - - - HIDE BOOKMARKS BAR - - - */		
+	#PersonalToolbar {	
+	display: none !important;	
+	}	
+/* - - - HIDE DOWNLOADS BUTTON - - - */		
+	#downloads-button {	
+	display: none !important;	
+	}	
+/* - - - HIDE SPECIAL-SPRINGS - - - */		
+	/* Hide this rubbish so that it doesn't stop the url bar from moving all the way to the left */	
+	#customizableui-special-spring1 {	
+	display: none !important;	
+	}	
+	/* For consistency also hide special-spring2 on the right side */	
+	#customizableui-special-spring2 {	
+	display: none !important;	
+	}	
+/* - - - NAVIGATOR-TOOLBOX - - - */		
+	#navigator-toolbox {	
+	background-color: #000 !important;	
+	}	
+/* - - - NAV-BAR - - - */		
+	#nav-bar {	
+	background-color: #000 !important;	
+	height: 30px !important;	
+	}	
+/* - - - HAMBURGER MENU - - - */		
+	/* Adjusting background colour and text colour of hamburger menu */	
+	#appMenu-popup,	
+	#appMenu-mainView,	
+	.panel-subview-body {	
+	background-color: #000 !important;	
+	color: #fff !important;	
+	}
+/* - - - HAMBURGER MENU ICON - - - */		
+	/* Adjust colour of Hamburger menu icon */	
+		#PanelUI-menu-button .toolbarbutton-icon {
+		fill: #fff !important;
+		}
+	/* Move hamburger menu icon to the start (leftmost) of toolbar */	
+		#PanelUI-button {
+		-moz-box-ordinal-group: 0 !important;
+		order: -1 !important;
+		}
+/* - - - UNIFIED EXTENSIONS BUTTON (uBlock, NoScript, etc.) - - - */
+    	#unified-extensions-button {
+	order: 0 !important; /* Comes after hamburger (-1), before URL bar (default or unassigned = 0) */
+	-moz-box-ordinal-group: 1 !important;
+	margin-left: 0px !important;
+	flex-grow: 0 !important;
+	flex-shrink: 0 !important;
+	}
+/* - - - OTHER ICONS - - - */
+	/* Hide unwanted icons */	
+		#back-button {
+		display: none !important;
+		}
+		#forward-button {
+		display: none !important;
+		}
+		#reload-button {
+		display: none !important;
+		}
+		#home-button {
+		display: none !important;
+		}
+		#alltabs-button {
+		display: none !important;
+		}
+		#star-button-box {
+		display: none !important;
+		}
+		#save-to-pocket-button {
+		display: none !important;
+		}
+		#fxa-toolbar-menu-button {
+		display: none !important;
+		}
+		#tabs-newtab-button {
+		display: none !important;
+		}
+		#firefox-view-button.toolbarbutton-1.chromeclass-toolbar-additional {
+		display: none !important;
+		}
+		#tracking-protection-icon-container {
+		display: none !important;
+		}
+		#tracking-protection-icon-box {
+		display: none !important;
+		}
+		#identity-icon-box {
+		display: none !important;
+		}
+		#identity-permission-box {
+		display: none !important;
+		}
+		.tabbrowser-tab .tab-icon-image {
+		display: none !important;
+		}
+		.tabbrowser-tab .tab-throbber {
+		display: none !important;
+		}
+/* - - - URLBAR - - - */		
+	/* Setting fixed width for urlbar */	
+   #urlbar-container {
+	 order: 1 !important; /* Ensures it comes after extensions */
+	 -moz-box-ordinal-group: 2 !important;
+	 width: 200px !important;
+	 flex-grow: 0 !important;
+	 flex-shrink: 0 !important;
+	  margin-left: 6px !important;
+    }
+	/* Adjust colours for urlbar text */	
+		#urlbar .urlbar-input {
+		color: #fff !important;
+		}
+	/* Hide the ".urlbarView" menu (various search suggestions) */	
+		#urlbar[focused] .urlbarView {
+		display: none !important;
+		}
+	/* Hide the border thing that was appearing when the urlbar was focused and typed into */	
+		#urlbar[focused="true"],
+		#urlbar[open],
+		#urlbar-input-container,
+		#urlbar-background {
+		background: inherit !important;
+		border: none !important;
+		box-shadow: none !important;
+		}
+/* - - - TABS - - - */		
+	/* Tab browser margin */	
+		/* this positions the tabs on the right side of the bar */
+		#tabbrowser-tabs {
+		margin-left: 350px !important;
+		}
+	/* ACTIVE tab background colour */	
+		.tabbrowser-tab[selected="true"] .tab-background {
+		background-color: #808080 !important;
+		}
+	/* ACTIVE tab text colour */	
+		.tabbrowser-tab[selected="true"] .tab-label {
+		color: #fff !important;
+		}
+	/* HOVERED tab text colour (when not selected) */	
+		.tabbrowser-tab:hover:not([selected="true"]) .tab-label {
+		color: #fff !important;
+		}
+	/* UNSELECTED tab text colour */	
+		.tabbrowser-tab:not([selected="true"]) .tab-label {
+		color: #808080 !important;
+		}
