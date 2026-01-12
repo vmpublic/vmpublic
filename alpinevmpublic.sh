@@ -61,7 +61,8 @@ apk add \
     xdg-desktop-portal-wlr \
     seatd \
     pam-rundir \
-    util-linux-login
+    util-linux-login \
+    dbus
 
 # -----------------------------
 # Pipewire
@@ -70,33 +71,43 @@ apk add \
   pipewire \
   pipewire-pulse \
   wireplumber \
-  dbus
-
 # -----------------------------
-# Configure earlyoom (OpenRC style)
+# Configure earlyoom (OpenRC)
 # -----------------------------
 rc-update add earlyoom default
 rc-service earlyoom start
-
 # -----------------------------
-# Set PATH for root and vmuser0
+# Configure networking (OpenRC)
 # -----------------------------
-printf 'export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"\n' >> /etc/profile
-
+rc-update add networking default
+rc-service networking start
 # -----------------------------
-# Set Wayland variables for enabling cursr in sway
 # -----------------------------
-printf 'export WLR_NO_HARDWARE_CURSORS=1\n' >> /etc/profile
-printf 'export WLR_RENDERER=pixman\n' >> /etc/profile
-
+# Configure eudev
+# -----------------------------
+setup-devd udev
+# -----------------------------
+# Configure seatd (OpenRC)
+# -----------------------------
+rc-update add seatd default
+rc-service seatd start
+# -----------------------------
+# Configure dbus (OpenRC)
+# -----------------------------
+rc-update add dbus default
+rc-service dbus start
 # -----------------------------
 # Set groups for vmuser0
 # -----------------------------
 # Alpine uses addgroup instead of usermod
-for grp in wheel tty adm video; do
+for grp in wheel tty adm input audio video seat; do
     addgroup vmuser0 $grp
 done
-
+# -----------------------------
+# Set doas config to allow wheel group
+# -----------------------------
+mkdir -p /etc/doas.d
+printf "%s\n" "permit persist :wheel" > /etc/doas.d/doas.conf
 # -----------------------------
 # Install yt-dlp
 # -----------------------------
@@ -112,12 +123,6 @@ wget -O /etc/xdg/foot/foot.ini https://raw.githubusercontent.com/vmpublic/vmpubl
 wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
 
 # -----------------------------
-# Default Shell
-# -----------------------------
-# Alpine's default shell IS busybox ash. No wrapper needed.
-# Just keeping this here as comparison for prior vm scripts
-
-# -----------------------------
 # Configure tmux
 # -----------------------------
 # No need to set default shell for tmux since busybox already default
@@ -127,7 +132,20 @@ set-option -g status-position top
 set-option -g pane-border-style fg=white
 set-option -g pane-active-border-style fg=white
 EOF
-
+# -----------------------------
+# Global Environment Variables
+# -----------------------------
+tee /etc/profile.d/user0-env.sh <<'EOF'
+# Core Paths
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Wayland / Sway Specifics
+export WLR_NO_HARDWARE_CURSORS=1
+export WLR_RENDERER=pixman
+# Quality of Life Aliases
+alias xx='doas -u root'
+EOF
+# Ensure it is readable by everyone
+chmod 644 /etc/profile.d/user0-env.sh
 # -----------------------------
 # Grant vmuser0 full ownership
 # -----------------------------
@@ -136,5 +154,4 @@ chown -R vmuser0:vmuser0 /home/vmuser0
 # -----------------------------
 # Cleanup
 # -----------------------------
-# apk doesn't use 'autoremove' like in Debian, but can clean the cache for good measure
-rm -rf /var/cache/apk/*
+reboot
