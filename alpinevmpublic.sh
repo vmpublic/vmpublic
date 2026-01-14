@@ -137,11 +137,22 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Wayland / Sway Specifics
 export WLR_NO_HARDWARE_CURSORS=1
 export WLR_RENDERER=pixman
+# Screensharing-with-firefox-in-sway specifics
+export XDG_CURRENT_DESKTOP=sway
+export MOZ_ENABLE_WAYLAND=1
 # Quality of Life Aliases
 alias xx='doas -u root'
 EOF
 # Ensure it is readable by everyone
 chmod 644 /etc/profile.d/user0-env.sh
+# -----------------------------
+# Ser wlr as default xdg portal - important for enabling screensharing-with-firefox-in-sway
+# -----------------------------
+mkdir -p /home/vmuser0/.config/xdg-desktop-portal
+cat > /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
+[preferred]
+default=wlr
+EOF 
 # -----------------------------
 # Grant vmuser0 full ownership
 # -----------------------------
