@@ -146,10 +146,10 @@ EOF
 # Ensure it is readable by everyone
 chmod 644 /etc/profile.d/user0-env.sh
 # -----------------------------
-# Ser wlr as default xdg portal - important for enabling screensharing-with-firefox-in-sway
+# Set wlr as default xdg portal - important for enabling screensharing-with-firefox-in-sway
 # -----------------------------
 mkdir -p /home/vmuser0/.config/xdg-desktop-portal
-cat > /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
+tee > /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
 [preferred]
 default=wlr
 EOF 
