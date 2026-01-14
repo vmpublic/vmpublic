@@ -1,3 +1,18 @@
+# Line for enabling pipewire screensharing in sway in alpine
+exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+
+# Start pipewire stack
+exec pipewire
+exec wireplumber
+exec pipewire-pulse
+
+# Start portals
+exec xdg-desktop-portal
+exec xdg-desktop-portal-wlr
+
+# Disable xwayland
+xwayland disable
+
 # Remove all borders from tiled windows
 for_window [tiling] border none
 
