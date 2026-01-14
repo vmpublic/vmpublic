@@ -131,7 +131,7 @@ EOF
 # -----------------------------
 # Global Environment Variables
 # -----------------------------
-tee /etc/profile.d/user0-env.sh <<'EOF'
+tee /etc/profile.d/vmuser0-env.sh <<'EOF'
 # Core Paths
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Wayland / Sway Specifics
