@@ -64,14 +64,17 @@ apk add \
     pam-rundir \
     util-linux-login \
     dbus
-
 # -----------------------------
 # Pipewire
 # -----------------------------
 apk add \
   pipewire \
   pipewire-pulse \
-  wireplumber \
+  wireplumber
+# -----------------------------
+# XWayland (specifically for painless webcam functionality in zoom on firefox - as sway-only config seemingly won't behave)
+apk add xwayland
+# -----------------------------
 # -----------------------------
 # Configure earlyoom (OpenRC)
 # -----------------------------
@@ -134,12 +137,14 @@ EOF
 tee /etc/profile.d/vmuser0-env.sh <<'EOF'
 # Core Paths
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# Wayland / Sway Specifics
+# Specifics for Wayland / Sway
 export WLR_NO_HARDWARE_CURSORS=1
 export WLR_RENDERER=pixman
-# Screensharing-with-firefox-in-sway specifics
+# Specifics for screensharing via zoom in firefox in sway
 export XDG_CURRENT_DESKTOP=sway
 export MOZ_ENABLE_WAYLAND=1
+# Specifics for painless webcam functionality in zoom in firefox in sway - as sway-only config seemingly won't behave
+export GDK_BACKEND=x11
 # Quality of Life Aliases
 alias xx='doas -u root'
 EOF
