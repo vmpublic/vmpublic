@@ -6,7 +6,7 @@ set -eux
 # -----------------------------
 # Create /home/vmuser0 because of weirdness
 mkdir -p /home/vmuser0
-# Networking auto-setup (Ensure script uses 'ip' from busybox or iproute2)
+# Networking auto-setup
 wget -O /home/vmuser0/networking-auto-setup.sh https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/networking-auto-setup.sh
 chmod +x /home/vmuser0/networking-auto-setup.sh
 
@@ -72,7 +72,7 @@ apk add \
   pipewire-pulse \
   wireplumber
 # -----------------------------
-# XWayland (specifically for painless webcam functionality in zoom on firefox - as sway-only config seemingly won't behave)
+# XWayland (specifically for painless webcam functionality in zoom in firefox - as sway-only config seemingly won't behave)
 apk add xwayland
 # -----------------------------
 # -----------------------------
@@ -151,7 +151,7 @@ EOF
 # Ensure it is readable by everyone
 chmod 644 /etc/profile.d/user0-env.sh
 # -----------------------------
-# Set wlr as default xdg portal - important for enabling screensharing-with-firefox-in-sway
+# Set wlr as default xdg portal - important for screensharing via zoom in firefox in sway
 # -----------------------------
 mkdir -p /home/vmuser0/.config/xdg-desktop-portal
 tee > /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
