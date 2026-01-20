@@ -11,7 +11,9 @@ exec xdg-desktop-portal
 exec xdg-desktop-portal-wlr
 
 # Disable xwayland
-xwayland disable
+# xwayland disable
+# commented out to allow for painless webcam functionality in zoom in firefox - as sway-only config seemingly won't behave
+# see additional details in main script for further info
 
 # Remove all borders from tiled windows
 for_window [tiling] border none
