@@ -121,7 +121,13 @@ mkdir -p /etc/sway /etc/xdg
 wget -O /etc/sway/config https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/config
 wget -O /etc/xdg/foot/foot.ini https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/foot.ini
 wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic/refs/heads/main/.vimrc
-
+# -----------------------------
+# Configure libreofficecalc
+# -----------------------------
+mkdir -p /home/vmuser0/.config/4/user
+rm -f /home/user0/.config/libreoffice/4/user/registrymodifications.xcu
+wget -O /home/vmuser0/.config/libreoffice/4/user/registrymodifications.xcu https://raw.githubusercontent.com/vmpublic/vmpublic/libreofficecalc/registrymodifications.xcu
+# then in later section I also add a gtk theme entry to the env file to darken the libreofficecalc frame
 # -----------------------------
 # Configure tmux
 # -----------------------------
@@ -146,6 +152,8 @@ export XDG_CURRENT_DESKTOP=sway
 export MOZ_ENABLE_WAYLAND=1
 # Specifics for painless webcam functionality in zoom in firefox in sway - as sway-only config seemingly won't behave
 export GDK_BACKEND=x11
+# Libreofficecalc appearance
+export GTK_THEME="Adwaita:dark"
 # Quality of Life Aliases
 alias xx='doas -u root'
 EOF
