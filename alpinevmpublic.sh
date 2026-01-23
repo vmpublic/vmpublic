@@ -43,8 +43,9 @@ apk add \
     nmap-ncat \
     font-terminus \
     build-base \
-    earlyoom
-
+    earlyoom \
+    libreoffice-calc \
+    libreoffice-gtk3
 # -----------------------------
 # Wayland / Sway / screen sharing
 # -----------------------------
