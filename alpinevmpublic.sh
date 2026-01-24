@@ -124,9 +124,9 @@ wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic
 # -----------------------------
 # Configure libreofficecalc
 # -----------------------------
-mkdir -p /home/vmuser0/.config/4/user
+mkdir -p /home/vmuser0/.config/libreofficecalc/4/user
 rm -f /home/user0/.config/libreoffice/4/user/registrymodifications.xcu
-wget -O /home/vmuser0/.config/libreoffice/4/user/registrymodifications.xcu https://raw.githubusercontent.com/vmpublic/vmpublic/libreofficecalc/registrymodifications.xcu
+wget -O /home/vmuser0/.config/libreoffice/4/user/registrymodifications.xcu https://raw.githubusercontent.com/vmpublic/vmpublic/main/libreofficecalc/registrymodifications.xcu
 # then in later section I also add a gtk theme entry to the env file to darken the libreofficecalc frame
 # -----------------------------
 # Configure tmux
@@ -158,21 +158,20 @@ export GTK_THEME="Adwaita:dark"
 alias xx='doas -u root'
 EOF
 # Ensure it is readable by everyone
-chmod 644 /etc/profile.d/user0-env.sh
+chmod 644 /etc/profile.d/vmuser0-env.sh
 # -----------------------------
 # Set wlr as default xdg portal - important for screensharing via zoom in firefox in sway
 # -----------------------------
 mkdir -p /home/vmuser0/.config/xdg-desktop-portal
-tee > /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
+tee /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
 [preferred]
 default=wlr
-EOF 
+EOF
 # -----------------------------
 # Grant vmuser0 full ownership
 # -----------------------------
 chown -R vmuser0:vmuser0 /home/vmuser0
-
 # -----------------------------
-# Cleanup
+# Reboot and apply changes
 # -----------------------------
 reboot
