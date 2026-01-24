@@ -124,7 +124,7 @@ wget -O /home/vmuser0/.vimrc https://raw.githubusercontent.com/vmpublic/vmpublic
 # -----------------------------
 # Configure libreofficecalc
 # -----------------------------
-mkdir -p /home/vmuser0/.config/libreofficecalc/4/user
+mkdir -p /home/vmuser0/.config/libreoffice/4/user
 rm -f /home/user0/.config/libreoffice/4/user/registrymodifications.xcu
 wget -O /home/vmuser0/.config/libreoffice/4/user/registrymodifications.xcu https://raw.githubusercontent.com/vmpublic/vmpublic/main/libreofficecalc/registrymodifications.xcu
 # then in later section I also add a gtk theme entry to the env file to darken the libreofficecalc frame
