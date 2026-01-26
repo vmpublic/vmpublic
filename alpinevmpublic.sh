@@ -161,12 +161,20 @@ EOF
 chmod 644 /etc/profile.d/vmuser0-env.sh
 # -----------------------------
 # Set wlr as default xdg portal - important for screensharing via zoom in firefox in sway
+# But now using zoom flatpak client so may not need this section - keeping for now anyway
 # -----------------------------
 mkdir -p /home/vmuser0/.config/xdg-desktop-portal
 tee /home/vmuser0/.config/xdg-desktop-portal/portals.conf <<'EOF'
 [preferred]
 default=wlr
 EOF
+# -----------------------------
+# Configuring zoom flatpak client
+# -----------------------------
+apk add flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install us.zoom.Zoom
+flatpak override  us.zoom.Zoom --talk-name=org.freedesktop.portal.Desktop
 # -----------------------------
 # Grant vmuser0 full ownership
 # -----------------------------
