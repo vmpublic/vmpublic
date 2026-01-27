@@ -156,6 +156,8 @@ export GDK_BACKEND=x11
 export GTK_THEME="Adwaita:dark"
 # Quality of Life Aliases
 alias xx='doas -u root'
+alias volup='wpctl set-volume @DEFAULT_SINK@ 0.1+'
+alias voldown='wpctl set-volume @DEFAULT_SINK@ 0.1-'
 EOF
 # Ensure it is readable by everyone
 chmod 644 /etc/profile.d/vmuser0-env.sh
