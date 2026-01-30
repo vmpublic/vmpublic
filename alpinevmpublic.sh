@@ -129,6 +129,31 @@ rm -f /home/user0/.config/libreoffice/4/user/registrymodifications.xcu
 wget -O /home/vmuser0/.config/libreoffice/4/user/registrymodifications.xcu https://raw.githubusercontent.com/vmpublic/vmpublic/main/libreofficecalc/registrymodifications.xcu
 # then in later section I also add a gtk theme entry to the env file to darken the libreofficecalc frame
 # -----------------------------
+# SC-IM Build
+# -----------------------------
+# Alpine-specific build deps
+apk add --no-cache libzip-dev libxml2-dev ncurses-dev build-base bison
+rm -rf /tmp/sc-im
+git clone --depth 1 https://github.com/andmarti1424/sc-im.git /tmp/sc-im
+# 1. Prepare transformation
+tmp=$(mktemp) || exit 1
+# 2. POSIX sed: Match line starting with LDLIBS, replace everything after =
+# Use -r only if extended regex needed
+sed '/^LDLIBS/s|=.*|= -lm -lncursesw -lzip -lxml2|' \
+    /tmp/sc-im/src/Makefile > "$tmp"
+# 3. Atomic replacement
+if [ $? -eq 0 ]; then
+    mv -f "$tmp" /tmp/sc-im/src/Makefile
+else
+    printf "%s\n"  "Error: sed failed to modify Makefile" >&2
+    rm -f "$tmp"
+    exit 1
+fi
+# 4. Compile and Install
+make -C "/tmp/sc-im/src" -j$(nproc)
+make -C "/tmp/sc-im/src" install
+rm -rf /tmp/sc-im
+# -----------------------------
 # Configure tmux
 # -----------------------------
 # No need to set default shell for tmux since busybox already default
