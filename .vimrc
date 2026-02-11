@@ -1,4 +1,9 @@
 " ------------------------------
+" DISABLE COLON (except for within insert mode)
+" ------------------------------
+nnoremap : <Nop>
+vnoremap : <Nop>
+" ------------------------------
 " DISABLE ARROW KEYS
 " ------------------------------
 nnoremap <Up> <Nop>
