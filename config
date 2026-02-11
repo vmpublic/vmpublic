@@ -1,3 +1,8 @@
+# Disable caps lock
+input "type:keyboard" {
+    xkb_options caps:none
+}
+
 # Line for enabling pipewire screensharing in sway in alpine
 exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
 
