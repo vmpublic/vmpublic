@@ -62,41 +62,10 @@ apk add \
     libreoffice-calc \
     libreoffice-gtk3
 # -----------------------------
-# Wayland / Sway / screen sharing
-# -----------------------------
-apk add \
-    sway \
-    foot \
-    grim \
-    slurp \
-    wayland-dev \
-    libxkbcommon-dev \
-    wl-clipboard \
-    swaylock \
-    mesa-dri-gallium \
-    xdg-desktop-portal \
-    xdg-desktop-portal-wlr \
-    seatd \
-    pam-rundir \
-    util-linux-login \
-    dbus
-# -----------------------------
-# Pipewire
-# -----------------------------
-apk add \
-  pipewire \
-  pipewire-pulse \
-  wireplumber
-# -----------------------------
-# XWayland (specifically for painless webcam functionality in zoom in firefox - as sway-only config seemingly won't behave)
-apk add xwayland
-# -----------------------------
-# -----------------------------
 # Configure earlyoom (OpenRC)
 # -----------------------------
 rc-update add earlyoom default
 rc-service earlyoom start
-# -----------------------------
 # -----------------------------
 # Configure eudev
 # -----------------------------
